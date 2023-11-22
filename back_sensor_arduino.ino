@@ -33,7 +33,7 @@ void setup() {
   lcd.setCursor(0, 0);
   if (! lis3dh.begin(0x18)) {
     while (1) {
-      yield();      //Code snippet provided from Adafruit, can be found at https://github.com/adafruit/Adafruit_LIS3DH
+      yield();      //Code snippet provided from examples on Github by Adafruit, can be found at https://github.com/adafruit/Adafruit_LIS3DH
     }
   }
   prevTimeMillis = millis();
