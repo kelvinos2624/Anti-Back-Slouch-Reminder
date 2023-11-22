@@ -70,7 +70,6 @@ void loop() {
   value = analogRead(flex_sensor);
   Serial.println(value);
   if (value >= flex) {
-    //digitalWrite(D5, HIGH);
     rating = 3;
   } else if (value >= flex - 75) {
     //digitalWrite(D5, LOW);
