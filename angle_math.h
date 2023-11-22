@@ -2,7 +2,7 @@ float get_angle(float z_comp_acc);
 float to_degrees(float radians);
 
 /*
-Constants
+Constants for calculations
 --------------
 */
 
