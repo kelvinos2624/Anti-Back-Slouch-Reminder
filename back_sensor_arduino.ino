@@ -29,7 +29,7 @@ void setup() {
 
   if (! lis3dh.begin(0x18)) {
     while (1) {
-      yield();      //Function provided from Adafruit, can be found at https://github.com/adafruit/Adafruit_LIS3DH
+      yield();      //Code snippet provided from Adafruit, can be found at https://github.com/adafruit/Adafruit_LIS3DH
     }
   }
   prevTimeMillis = millis();
