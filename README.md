@@ -1,5 +1,7 @@
 # Anti Back Slouch Reminder
 
+Authors: Jason and Kelvin
+
 ## Acknowledgements
 
 This project used Adafruit's LIS3DH and Unified Sensor Arduino Libraries.   
