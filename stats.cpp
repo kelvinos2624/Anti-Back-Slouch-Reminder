@@ -2,7 +2,7 @@
 #include "stats.h"
 
 /*
-Functions
+Functions for Welford's Algorithm
 -----------------
 */
 
