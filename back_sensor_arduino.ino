@@ -23,10 +23,14 @@ int flex_sensor = A0;
 int value = 0;
 int flex{950};
 int rating{1};
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
   if (! lis3dh.begin(0x18)) {
     while (1) {
       yield();      //Code snippet provided from Adafruit, can be found at https://github.com/adafruit/Adafruit_LIS3DH
@@ -36,6 +40,7 @@ void setup() {
   currTimeMillis = millis();
   pinMode(D5, OUTPUT);
 }
+
 
 void loop() {
   // put your main code here, to run repeatedly:
@@ -49,13 +54,16 @@ void loop() {
     update_variance(variance, num_vals, prev_average, curr_average, curr_angle);
     num_vals++;
     std_dev = calculate_std_dev(variance);
+
   }
 
-if (to_degrees(curr_angle) >= ANGLE_THRESHOLD || value >= flex) {
-  digitalWrite(D5, HIGH);
-} else {
-  digitalWrite(D5, LOW);
-}
+  if (to_degrees(curr_angle) >= ANGLE_THRESHOLD || value >= flex) {
+    digitalWrite(D5, HIGH);
+  } else {
+    digitalWrite(D5, LOW);
+  }
+
+
   Serial.print("Angle: ");
   Serial.println(to_degrees(curr_angle));
 
@@ -72,6 +80,28 @@ if (to_degrees(curr_angle) >= ANGLE_THRESHOLD || value >= flex) {
     rating = 1;
   }
   Serial.print(rating);
-  delay(200);
+  lcd.print("Slouch: ");
+  lcd.print(to_degrees(curr_angle));
+  lcd.print(" deg");
 
+  lcd.setCursor(0, 1);
+  lcd.print("Flex Rating: ");
+  if (rating == 3) {
+    lcd.print("Bad");
+  } else if (rating == 2) {
+    lcd.print("Ok");
+  } else {
+    lcd.print("Good");
+  }
+
+  lcd.setCursor(0, 2);
+  lcd.print("Std Dev: ");
+  lcd.print(to_degrees(std_dev));
+
+  lcd.setCursor(0, 3);
+  lcd.print("Mean: ");
+  lcd.print(to_degrees(curr_average));
+
+  delay(200);
+  lcd.clear();
 }
