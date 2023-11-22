@@ -8,7 +8,7 @@ Functions
 /*
  * Computes the angle with the vertical using trigonometry with the gravitational acceleration vector assuming the user is stationary
  * @param z_comp_acc the z component of acceleration
- * @return the angle with the vertical in radians 
+ * @return the angle with the vertical in radians as a float
 */
 float get_angle(float z_comp_acc){
     if(abs(z_comp_acc) > GRAVITY_ACC) z_comp_acc = GRAVITY_ACC;
